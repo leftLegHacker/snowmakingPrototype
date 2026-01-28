@@ -1,0 +1,72 @@
+
+body {
+    font-family: Arial;
+    text-align: center;
+    margin-top: 50px;
+}
+
+.pipe-container {
+    position: relative;
+    width: 500px;
+    height: 50px;
+    margin: 50px auto;
+    background: gray;
+    border-radius: 25px;
+    overflow: hidden;
+}
+
+/* Flow inside the pipe */
+.flow {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 0%;
+    background: linear-gradient(90deg, #00ff00 25%, #66ff66 50%, #00ff00 75%);
+    animation: flowAnimation 1s linear infinite;
+    z-index: 1;
+}
+
+@keyframes flowAnimation {
+    0% { background-position: 0 0; }
+    100% { background-position: 50px 0; }
+}
+
+.valve {
+    position: absolute;
+    top: -20px;
+    width: 40px;
+    height: 40px;
+    background: red;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: transform 0.3s;
+    z-index: 2;
+}
+
+.valve::after {
+    content: '';
+    width: 4px;
+    height: 20px;
+    background: white;
+    display: block;
+    border-radius: 2px;
+    transform-origin: bottom center;
+    transition: transform 0.3s;
+}
+
+/* Positions for the valves */
+#valve1 { left: 100px; }
+#valve2 { left: 360px; }
+
+/* Open/closed styles */
+.open::after { transform: rotate(0deg); }
+.closed::after { transform: rotate(90deg); }
+
+.status {
+    font-weight: bold;
+    margin-top: 30px;
+}

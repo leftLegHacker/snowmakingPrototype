@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Pipe Valve Control</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<h1>Pipe System</h1>
+
+<div class="pipe-container">
+    <div class="flow" id="flow"></div>
+    <div id="valve1" class="valve closed" onclick="toggleValve(1)"></div>
+    <div id="valve2" class="valve closed" onclick="toggleValve(2)"></div>
+</div>
+
+<div class="status" id="status">Valve 1: Closed | Valve 2: Closed</div>
+
+<script>
+let valve1 = false;
+let valve2 = false;
+
+function toggleValve(id) {
+    if(id === 1) valve1 = !valve1;
+    if(id === 2) valve2 = !valve2;
+
+    // Update valve CSS
+    document.getElementById('valve1').className = 'valve ' + (valve1 ? 'open' : 'closed');
+    document.getElementById('valve2').className = 'valve ' + (valve2 ? 'open' : 'closed');
+
+    // Update flow
+    const flow = document.getElementById('flow');
+    if(valve1 && valve2) {
+        flow.style.width = "100%";  // both open, show flow
+    } else {
+        flow.style.width = "0%";    // any closed, hide flow
+    }
+
+    // Update status text
+    document.getElementById('status').innerText =
+        `Valve 1: ${valve1 ? "Open" : "Closed"} | Valve 2: ${valve2 ? "Open" : "Closed"}`;
+}
+</script>
+
+</body>
+</html>
