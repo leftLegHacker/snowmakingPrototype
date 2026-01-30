@@ -64,6 +64,23 @@ function toggleValve(id) {
     document.getElementById('valve1').className = 'valve ' + (valve1 ? 'open' : 'closed');
     document.getElementById('valve2').className = 'valve ' + (valve2 ? 'open' : 'closed');
 
+
+    <!--
+    document.getElementById('valve1').className = 'valve ' this is grabing that id valve1 and class name to set
+    with the ternary operator
+
+    in the future of this project this is going to be a cleaner way to update 30+ valves
+
+    this is what is happening in the ternary operator (valve1 ? 'open' : 'closed') broken down to a if else
+    https://www.geeksforgeeks.org/dsa/ternary-operator-in-programming/#ternary-operator-in-python
+    if (valve1) {
+            'open'
+        } else {
+            'closed'
+        }
+    -->
+
+
     // Update flow
     const flow = document.getElementById('flow');
     if(valve1 && valve2) {
