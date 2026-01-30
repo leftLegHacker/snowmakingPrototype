@@ -70,3 +70,26 @@ body {
     font-weight: bold;
     margin-top: 30px;
 }
+.notes {
+  margin-top: 20px;
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.noteblock {
+  min-width: 260px;
+  flex: 1;
+}
+
+.noteblock label {
+  display: block;
+  font-weight: 600;
+  margin-bottom: 6px;
+}
+
+.noteblock textarea {
+  width: 100%;
+  padding: 8px;
+  resize: vertical;
+}
