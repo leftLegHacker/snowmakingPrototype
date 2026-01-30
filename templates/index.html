@@ -16,6 +16,7 @@
 
 <div class="status" id="status">Valve 1: Closed | Valve 2: Closed</div>
 
+
 <div class="notes">
     <div class="noteblock">
         <label for="note-valve1">Valve 1</label>
@@ -27,9 +28,33 @@
     </div>
 </div>
 
+
+<div class="history">
+    <h2>History</h2>
+    <div class="History Control">
+        <button type="button" onclick="clearHist()">Clear</button>
+    </div>
+    <ul id="historyList"></ul>
+</div>
+
 <script>
 let valve1 = false;
 let valve2 = false;
+
+function formatTime() {
+    return new Date().toLocaleString();
+}
+function addhist(text){
+    const ul = document.getElementById("historyList");
+    const li = document.createElement("li");
+    li.textContent = text;
+    ul.prepend(li);
+}
+function clearHist(){
+    document.getElementById("historyList").innerHTML = "";
+}
+
+addhist(`[${formatTime()}] System loaded`);
 
 function toggleValve(id) {
     if(id === 1) valve1 = !valve1;
@@ -54,6 +79,9 @@ function toggleValve(id) {
     // Update status text
     document.getElementById('status').innerText =
         `Valve 1: ${valve1 ? "Open" : "Closed"} | Valve 2: ${valve2 ? "Open" : "Closed"}`;
+
+    addhist(`[${formatTime()}] Valve ${id} -> ${id === 1 ? (valve1 ? "Open" : "Closed") : (valve2 ? "Open" : "Closed")}`);
+
 }
 </script>
 
