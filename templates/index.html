@@ -43,7 +43,11 @@ function toggleValve(id) {
     const flow = document.getElementById('flow');
     if(valve1 && valve2) {
         flow.style.width = "100%";  // both open, show flow
-    } else {
+    }
+    else if(valve1 || valve2){
+    flow.style.width = "50%";
+    }
+    else {
         flow.style.width = "0%";    // any closed, hide flow
     }
 
