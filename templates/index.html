@@ -1,106 +1,20 @@
-<!DOCTYPE html>
+<!DOCTYPE HTML>
 <html>
 <head>
-    <title>Pipe Valve Control For CB</title>
-<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <title>Colorado Terrain Map</title>
+
+    <!-- OpenLayers v2 -->
+    <script src="https://openlayers.org/api/OpenLayers.js"></script>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
-<body>
 
-<h1>Pipe System</h1>
+<body onload="init()">
+    <!-- Map container -->
+    <div id="demoMap"></div>
 
-<div class="pipe-container">
-    <div class="flow" id="flow"></div>
-    <div id="valve1" class="valve closed" onclick="toggleValve(1)"></div>
-    <div id="valve2" class="valve closed" onclick="toggleValve(2)"></div>
-</div>
-
-<div class="status" id="status">Valve 1: Closed | Valve 2: Closed</div>
-
-
-<div class="notes">
-    <div class="noteblock">
-        <label for="note-valve1">Valve 1</label>
-        <textarea id="note-valve1" rows="3" placeholder="Notes for Valve 1"></textarea>
-    </div>
-    <div class="noteblock">
-        <label for="note-valve2">Valve 2</label>
-        <textarea id="note-valve2" rows="3" placeholder="Notes for valve 2"></textarea>
-    </div>
-</div>
-
-
-<div class="history">
-    <h2>History</h2>
-    <div class="History Control">
-        <button type="button" onclick="clearHist()">Clear</button>
-    </div>
-    <ul id="historyList"></ul>
-</div>
-
-<script>
-let valve1 = false;
-let valve2 = false;
-
-function formatTime() {
-    return new Date().toLocaleString();
-}
-function addhist(text){
-    const ul = document.getElementById("historyList");
-    const li = document.createElement("li");
-    li.textContent = text;
-    ul.prepend(li);
-}
-function clearHist(){
-    document.getElementById("historyList").innerHTML = "";
-}
-
-addhist(`[${formatTime()}] System loaded`);
-
-function toggleValve(id) {
-    if(id === 1) valve1 = !valve1;
-    if(id === 2) valve2 = !valve2;
-
-    // Update valve CSS
-    document.getElementById('valve1').className = 'valve ' + (valve1 ? 'open' : 'closed');
-    document.getElementById('valve2').className = 'valve ' + (valve2 ? 'open' : 'closed');
-
-
-    /*
-    document.getElementById('valve1').className = 'valve ' this is grabing that id valve1 and class name to set
-    with the ternary operator
-
-    in the future of this project this is going to be a cleaner way to update 30+ valves
-
-    this is what is happening in the ternary operator (valve1 ? 'open' : 'closed') broken down to a if else
-    https://www.geeksforgeeks.org/dsa/ternary-operator-in-programming/#ternary-operator-in-python
-    if (valve1) {
-            'open'
-        } else {
-            'closed'
-        }
-    */
-
-
-    // Update flow
-    const flow = document.getElementById('flow');
-    if(valve1 && valve2) {
-        flow.style.width = "100%";  // both open, show flow
-    }
-    else if(valve1 || valve2){
-    flow.style.width = "50%";
-    }
-    else {
-        flow.style.width = "0%";    // any closed, hide flow
-    }
-
-    // Update status text
-    document.getElementById('status').innerText =
-        `Valve 1: ${valve1 ? "Open" : "Closed"} | Valve 2: ${valve2 ? "Open" : "Closed"}`;
-
-    addhist(`[${formatTime()}] Valve ${id} -> ${id === 1 ? (valve1 ? "Open" : "Closed") : (valve2 ? "Open" : "Closed")}`);
-
-}
-</script>
-
+    <!-- JS -->
+    <script src="{{ url_for('static', filename='java.js') }}"></script>
 </body>
 </html>
