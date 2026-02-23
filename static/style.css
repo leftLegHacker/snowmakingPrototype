@@ -1,95 +1,60 @@
-
-body {
-    font-family: Arial;
-    text-align: center;
-    margin-top: 50px;
-}
-
-.pipe-container {
-    position: relative;
-    width: 500px;
-    height: 50px;
-    margin: 50px auto;
-    background: gray;
-    border-radius: 25px;
-    overflow: hidden;
-}
-
-/* Flow inside the pipe */
-.flow {
-    position: absolute;
-    top: 0;
-    left: 0;
+/* Inizilize to size of screen so map can copy*/
+html, body {
     height: 100%;
-    width: 0%;
-    background: linear-gradient(90deg, #00ff00 25%, #66ff66 50%, #00ff00 75%);
-    animation: flowAnimation 1s linear infinite;
-    z-index: 1;
+    width: 100%;
+    margin: 0;
+    padding: 0;
 }
 
-@keyframes flowAnimation {
-    0% { background-position: 0 0; }
-    100% { background-position: 50px 0; }
+/* Map Size */
+#demoMap {
+    width: 100%;
+    height: 100%;       /* large enough to see small area */
+    border: 2px solid #333;
+    background-color: #f5f5f5;
 }
 
-.valve {
-    position: absolute;
-    top: -20px;
-    width: 40px;
-    height: 40px;
-    background: red;
-    border-radius: 50%;
+/* Popup container text */
+.note-popup {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 22px;
+    line-height: 1.4;
+    color: #222;
+}
+
+/* Title text */
+.note-popup b {
+    font-size: 22px;
+    font-weight: 600;
+}
+
+/* Textarea styling */
+.note-popup textarea {
+    width: 100%;
+    font-size: 18px;
+    font-family: inherit;
+    padding: 6px;
+    border: 1px solid #888;
+    border-radius: 4px;
+    resize: vertical;
+    box-sizing: border-box;
+}
+
+/* Button styling */
+.note-popup button {
+    font-size: 16px;
+    padding: 6px 10px;
+    border: 1px solid #444;
+    background: #f0f0f0;
     cursor: pointer;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    transition: transform 0.3s;
-    z-index: 2;
+    border-radius: 4px;
 }
 
-.valve::after {
-    content: '';
-    width: 4px;
-    height: 20px;
-    background: white;
-    display: block;
-    border-radius: 2px;
-    transform-origin: bottom center;
-    transition: transform 0.3s;
-}
-
-/* Positions for the valves */
-#valve1 { left: 100px; }
-#valve2 { left: 360px; }
-
-/* Open/closed styles */
-.open::after { transform: rotate(0deg); }
-.closed::after { transform: rotate(90deg); }
-
-.status {
-    font-weight: bold;
-    margin-top: 30px;
-}
-.notes {
-  margin-top: 20px;
-  display: flex;
-  gap: 16px;
-  flex-wrap: wrap;
-}
-
-.noteblock {
-  min-width: 260px;
-  flex: 1;
-}
-
-.noteblock label {
-  display: block;
-  font-weight: 600;
-  margin-bottom: 6px;
-}
-
-.noteblock textarea {
-  width: 100%;
-  padding: 8px;
-  resize: vertical;
+.olPopupCloseBox {
+    width: 28px !important;
+    height: 28px !important;
+    right: 4px !important;
+    top: 4px !important;
+    cursor: pointer;
+    background-size: contain !important;
 }
